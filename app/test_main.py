@@ -39,3 +39,15 @@ def test_max_16_length_valid() -> None:
 
 def test_invalid_character() -> None:
     assert check_password("Password1*") is False
+
+
+def test_min_length_boundary_7_is_invalid() -> None:
+    pwd = "A1@bcde"
+    assert len(pwd) == 7
+    assert check_password(pwd) is False
+
+
+def test_requires_at_least_one_allowed_special() -> None:
+    assert check_password("Password1") is False
+    assert check_password("Password1*") is False
+    assert check_password("Password1@") is True
